@@ -14,4 +14,3 @@ doc/app
 schema.rb
 .tags
 emails/*
-public/uploads/*
