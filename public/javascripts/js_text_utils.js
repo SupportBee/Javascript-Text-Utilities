@@ -18,14 +18,16 @@ var JSUtils = {};
 
     isToday: function(date){
       date = ensureDate(date);
-      return (Date.now().getDate() === date.getDate()) &&
-             (Date.now().getMonth() === date.getMonth()) &&
-             (Date.now().getFullYear() === date.getFullYear());
+      var nowDate = new Date();
+      return (nowDate.getDate() === date.getDate()) &&
+             (nowDate.getMonth() === date.getMonth()) &&
+             (nowDate.getFullYear() === date.getFullYear());
     },
 
     isThisYear: function(date){
       date = ensureDate(date);
-      return (Date.now().getFullYear() === date.getFullYear());
+      var nowDate = new Date();
+      return (nowDate.getFullYear() === date.getFullYear());
     },
 
 
