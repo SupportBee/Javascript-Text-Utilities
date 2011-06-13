@@ -35,20 +35,6 @@ describe("JSUtils", function() {
     
    describe("Today's timestamps", function() {
 
-     //beforeEach(function() {
-       //this.isTodayMock = sinon.mock(JSUtils.Date);
-
-       //// Lets assume all dates are today's
-       //isTodayMock.expects('isToday').once().returns(true);
-     //});
-
-     //afterEach(function() { 
-       //// Everything should have used isToday
-       //isTodayMock.verify();
-       //this.isTodayMock.restore();
-     //}
-     
-     
      it("should show 0 - 12 hours today as AM", function(){
        var dateNow = Date.now();
        var amTime = new Date(dateNow.getFullYear(),
