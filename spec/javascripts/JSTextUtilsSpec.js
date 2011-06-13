@@ -80,9 +80,40 @@ describe("JSUtils", function() {
        var dateNow = Date.now();
        var amTime = new Date(dateNow.getYear(),
                              5,
-                             10,
+                             9,
                              23, 49, 0, 0);
-       expect(JSUtils.Date.toHuman(amTime)).toEqual('11:49 pm');
+
+       // Force it to be this year and not today's
+       var whenMock = sinon.mock(JSUtils.Date);
+
+       // Lets assume all dates are today's
+       whenMock.expects('isToday').once().returns(false);
+       whenMock.expects('isThisYear').once().returns(true);
+
+       expect(JSUtils.Date.toHuman(amTime)).toEqual('Jun 9');
+
+       whenMock.verify();
+       whenMock.restore();
+     });
+     
+     it("should show any date befor last year fully", function(){
+       var dateNow = Date.now();
+       var amTime = new Date(2010,
+                             5,
+                             9,
+                             23, 49, 0, 0);
+
+       // Force it to be this year and not today's
+       var whenMock = sinon.mock(JSUtils.Date);
+
+       // Lets assume all dates are today's
+       whenMock.expects('isToday').once().returns(false);
+       whenMock.expects('isThisYear').once().returns(false);
+
+       expect(JSUtils.Date.toHuman(amTime)).toEqual('6/9/2010');
+
+       whenMock.verify();
+       whenMock.restore();
      });
    });  
      
