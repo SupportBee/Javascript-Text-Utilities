@@ -40,8 +40,6 @@
       if(tmpArray.length > 0){
         quoteArray(outputArray,tmpArray);
       }
-      console.log(_.flatten(outputArray));
-      console.log(tmpArray);
       return _.flatten(outputArray).join('<br/>');
     }
 
