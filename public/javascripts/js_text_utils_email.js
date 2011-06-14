@@ -1,5 +1,12 @@
 (function(){
 
+
+  var quoteArray = function(outputArray, tmpArray){
+    outputArray.push("<div class='quoted'>");
+    outputArray.push(tmpArray);
+    outputArray.push("</div>");
+  }
+
   JSUtils.Email = {
 
     wrapQuotedText: function(text, breakPattern){
@@ -13,8 +20,6 @@
       _.each(inputArray, function(line){
           if(line.match(/^>.*$/) != null){
             // Quoted Line
-            console.log('quoted');
-
             if(inQuoted === false){
               // Start Quoting
               inQuoted = true;
@@ -22,19 +27,18 @@
             tmpArray.push(line);
           }else{
             // Regular Text
-            console.log('regular text');
+            if(tmpArray.length > 0){
+              quoteArray(outputArray,tmpArray);
+              tmpArray = [];
+            }
             outputArray.push(line);
             inQuoted = false;
           }
-          console.log(line);
         });
 
       // Text ended quoted
       if(tmpArray.length > 0){
-        outputArray.push("<div class='quoted'>");
-        outputArray.push(tmpArray);
-        outputArray.push("</div>");
-
+        quoteArray(outputArray,tmpArray);
       }
       console.log(_.flatten(outputArray));
       console.log(tmpArray);
