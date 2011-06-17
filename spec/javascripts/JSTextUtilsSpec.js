@@ -49,8 +49,8 @@ describe("JSUtils", function() {
        var amTime = new Date(dateNow.getFullYear(),
                              dateNow.getMonth(),
                              dateNow.getDate(),
-                             12, 49, 0, 0);
-       expect(JSUtils.Date.toHuman(amTime)).toEqual('12:49 pm');
+                             12, 9, 0, 0);
+       expect(JSUtils.Date.toHuman(amTime)).toEqual('12:09 pm');
      });
      
      it("should show 13 - 23 hours today as AM", function(){

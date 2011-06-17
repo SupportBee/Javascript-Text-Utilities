@@ -10,6 +10,15 @@ var JSUtils = {};
       return date;
   };
 
+  var formatMins = function(min){
+
+    if(min < 10){
+      return "0" + min;
+    }
+
+    return min;
+  };
+
   var monthArray=new Array("January","February","March","April","May","June",
                             "July","August","September","October","November","December")
   
@@ -37,12 +46,12 @@ var JSUtils = {};
       // Today?
       if(JSUtils.Date.isToday(date)){
         if(date.getHours() < 12){
-          return date.getHours() + ':' + date.getMinutes() + ' am';
+          return date.getHours() + ':' + formatMins(date.getMinutes()) + ' am';
         }
         if(date.getHours() === 12){
-          return '12:' + date.getMinutes() + ' pm';
+          return '12:' + formatMins(date.getMinutes()) + ' pm';
         }
-        return (date.getHours() - 12) + ':' + date.getMinutes() + ' pm';
+        return (date.getHours() - 12) + ':' + formatMins(date.getMinutes()) + ' pm';
       }
 
       // This Year?
