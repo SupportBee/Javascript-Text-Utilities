@@ -24,6 +24,17 @@ describe("JSUtils.Email", function() {
       console.log(expectedText);
     });
     
+    it("should work if <br> is used as line break ", function() {
+      
+      var emailWithQuoted = ["> A: Because it messes up the order in which people normally read text.", "> Q: Why is top-posting such a bad thing?", ">", "", "Funny very (:", "", "", "> A: Top-posting.", "> Q: What is the most annoying thing in e-mail?", ">", "> Folks - it's very hard to follow and participate in conversations where", "> people are top-posting[1].", "> It's hereby verboten on this list.", ">", "> Thanks.", ">", "> [1] http://en.wikipedia.org/wiki/Posting_style", ">", "> --", "> You received this message because you are subscribed to the Google Groups", "> \"Cukes\" group.", "> To post to this group, send email to cukes@googlegroups.com.", "> To unsubscribe from this group, send email to", "> cukes+unsubscribe@googlegroups.com.", "> For more options, visit this group at", "> http://groups.google.com/group/cukes?hl=en.", ">"].join('<br>');
+      console.log(emailWithQuoted);
+
+      var expectedText = ["<div class='quoted'>", "> A: Because it messes up the order in which people normally read text.", "> Q: Why is top-posting such a bad thing?", ">", "</div>", "", "Funny very (:", "", "", "<div class='quoted'>", "> A: Top-posting.", "> Q: What is the most annoying thing in e-mail?", ">", "> Folks - it's very hard to follow and participate in conversations where", "> people are top-posting[1].", "> It's hereby verboten on this list.", ">", "> Thanks.", ">", "> [1] http://en.wikipedia.org/wiki/Posting_style", ">", "> --", "> You received this message because you are subscribed to the Google Groups", "> \"Cukes\" group.", "> To post to this group, send email to cukes@googlegroups.com.", "> To unsubscribe from this group, send email to", "> cukes+unsubscribe@googlegroups.com.", "> For more options, visit this group at", "> http://groups.google.com/group/cukes?hl=en.", ">", "</div>"].join('<br/>');
+
+      expect(JSUtils.Email.wrapQuotedText(emailWithQuoted)).toEqual(expectedText);
+      console.log(JSUtils.Email.wrapQuotedText(emailWithQuoted));
+      console.log(expectedText);
+    });
 
   });  
   

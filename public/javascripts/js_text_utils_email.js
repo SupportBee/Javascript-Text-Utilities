@@ -11,7 +11,7 @@
 
     wrapQuotedText: function(text, breakPattern){
       
-      if(breakPattern === undefined) breakPattern = '<br/>';
+      if(breakPattern === undefined) breakPattern = /<br\/?>/;
 
       var inputArray = text.split(breakPattern);
       var outputArray = [];
